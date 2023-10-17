@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text Txt_Score = null;
     [SerializeField] private Text Txt_Message = null;
     private int Score = 0;
+
 
     void Start()
     {
@@ -19,12 +21,15 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if (Time.timeScale == 0 && Input.GetKeyDown(KeyCode.Return))
+        {
             StartGame();
+        }
     }
 
-    public void UpdateScore(int value)
+    public void UpdateScore()
     {
-        Score += value;
+        
+        Score += 10;
         Txt_Score.text = "SCORE : " + Score;
     }
 
@@ -41,5 +46,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         Txt_Message.text = "GAMEOVER! \nPRESS ENTER TO RESTART GAME.";
         Txt_Message.color = Color.red;
+
+
     }
 }
